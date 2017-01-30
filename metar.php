@@ -8,7 +8,7 @@ $username = "username";
 $password = "password";
 $dbname = "database";
 
-// Create connection
+// Create connection. You must replace this information with your own.
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
@@ -29,9 +29,9 @@ $metarArray = [];
 foreach ($masterArray as $array)
 {
 	$metarJoin = array();
-    $metarJoin['icao'] = substr($array, 0, 4);
-    $metarJoin['wx'] = $array;           
-    $metarArray[] = $metarJoin;
+    	$metarJoin['icao'] = substr($array, 0, 4);
+   	$metarJoin['wx'] = $array;           
+    	$metarArray[] = $metarJoin;
 }
 
 //Insert each METAR into the database using the new array.
@@ -45,14 +45,14 @@ foreach ($metarArray as $metar)
 	$sql = "REPLACE INTO weather (icao, wx) VALUES ('$icao', '$wx')";
 	if (mysqli_query($conn, $sql))
 	{
-    echo "METAR updated for " . $icao;
-    echo "<br />";
+    	echo "METAR updated for " . $icao;
+    	echo "<br />";
 	}
 	else
 	{
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+   	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
 }
-
+//Finished!
 mysqli_close($conn);
 ?>
